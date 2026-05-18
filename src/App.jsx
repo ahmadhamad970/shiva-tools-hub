@@ -47,8 +47,8 @@ const OWNER = {
   handle: "@s12325995",
   copyright: "© 2026 Ahmad Hamad / Sh!Va. All Rights Reserved.",
   socials: {
-    github: "https://github.com/YOUR_USERNAME",
-    instagram: "https://instagram.com/YOUR_USERNAME",
+    github: "https://github.com/ahmadhamad970",
+    instagram: "https://instagram.com/ahmad.hamad.cy",
     linkedin: "https://linkedin.com/in/YOUR_USERNAME",
     facebook: "https://facebook.com/YOUR_USERNAME",
     youtube: "https://youtube.com/@YOUR_USERNAME",
@@ -576,8 +576,92 @@ function ToolCard({ tool, t, isAdmin, onEdit, onDelete, onPreview }) {
   );
 }
 
-function ToolModal({ tool, t, onClose }) {
-  const Icon = iconMap[tool.iconType] || Code2;
+function ToolModal({ tool, t, onClose, lang = "en" }) {
+  // keep reference to tool to avoid unused var lint warning
+  void tool;
+  // Render the provided CV content instead of the tool preview.
+  const renderCV = () => {
+    if (lang === "ar") {
+      return (
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-white">الاسم: أحمد حمد</h2>
+          <div className="text-cyan-300 font-bold">اللقب: Sh!Va</div>
+          <div className="mt-4 text-slate-300">تخصص: مختص أمن سيبراني | باحث أمن معلومات | اختبار اختراق مرخّص</div>
+
+          <div className="mt-4 text-white font-bold">نبذة احترافية</div>
+          <p className="text-slate-300">أحمد حمد (Sh!Va) هو مختص في الأمن السيبراني وتحليل الأنظمة واختبار الاختراق بشكل قانوني ومرخّص، يعمل في مجال البحث الأمني واكتشاف الثغرات وتحليل سلوك الشبكات والأنظمة. يمتلك خبرة واسعة في تطوير أدوات أمنية متقدمة لاختبار الاختراق وتحليل الثغرات، مع اهتمام كبير ببناء حلول تقنية مخصصة للأمن السيبراني.</p>
+
+          <div className="text-white font-bold">الخبرات العملية</div>
+          <ul className="list-disc pl-5 text-slate-300">
+            <li>اختبار اختراق متقدم للأنظمة والتطبيقات (Web / Network / Systems)</li>
+            <li>تحليل الثغرات الأمنية (Vulnerability Research & Exploitation Analysis بشكل أخلاقي)</li>
+            <li>تصميم وتطوير أدوات احترافية للأمن السيبراني</li>
+            <li>تحليل الشبكات والبروتوكولات المتقدمة</li>
+            <li>العمل في بيئات Linux وWindows الاحترافية</li>
+            <li>بناء أنظمة مراقبة وأدوات OSINT متقدمة</li>
+            <li>تطوير الأدوات (Security Tool Development)</li>
+          </ul>
+
+          <div className="text-white font-bold">المهارات التقنية</div>
+          <p className="text-slate-300">Python, C / C++, JavaScript / Node.js, PHP, SQL, Bash / Shell, Go, Rust, PowerShell</p>
+
+          <div className="text-white font-bold">الاهتمامات</div>
+          <p className="text-slate-300">الأمن السيبراني المتقدم، تطوير أدوات الاختراق الأخلاقي، تحليل الأنظمة والشبكات، بناء أنظمة دفاع سيبراني.</p>
+        </div>
+      );
+    }
+
+    if (lang === "ru") {
+      return (
+        <div className="space-y-4">
+          <h2 className="text-3xl font-black text-white">Имя: Ахмед Хамад</h2>
+          <div className="text-cyan-300 font-bold">Псевдоним: Sh!Va</div>
+          <div className="mt-4 text-slate-300">Специализация: Специалист по кибербезопасности | Исследователь безопасности | Авторизованный тестировщик</div>
+
+          <div className="mt-4 text-white font-bold">Профессиональный профиль</div>
+          <p className="text-slate-300">Ахмад Хамад (Sh!Va) — специалист по кибербезопасности и исследователь безопасности, работающий в области этичного тестирования на проникновение, анализа уязвимостей и исследований системной безопасности. Разрабатывает продвинутые инструменты для анализа и тестирования безопасности.</p>
+
+          <div className="text-white font-bold">Опыт</div>
+          <ul className="list-disc pl-5 text-slate-300">
+            <li>Продвинутое тестирование на проникновение (веб, сети, системы)</li>
+            <li>Этичное исследование уязвимостей</li>
+            <li>Разработка инструментов кибербезопасности</li>
+            <li>Анализ сетевых протоколов</li>
+            <li>Работа в Linux и Windows средах</li>
+            <li>Разработка OSINT инструментов</li>
+          </ul>
+
+          <div className="text-white font-bold">Технические навыки</div>
+          <p className="text-slate-300">Python, C / C++, JavaScript / Node.js, PHP, SQL, Bash / Shell scripting, Go, Rust, PowerShell</p>
+        </div>
+      );
+    }
+
+    // default to English
+    return (
+      <div className="space-y-4">
+        <h2 className="text-3xl font-black text-white">Name: Ahmed Hamad</h2>
+        <div className="text-cyan-300 font-bold">Alias: Sh!Va</div>
+        <div className="mt-4 text-slate-300">Title: Cybersecurity Specialist | Security Researcher | Authorized Penetration Tester</div>
+
+        <div className="mt-4 text-white font-bold">Professional Summary</div>
+        <p className="text-slate-300">Ahmed Hamad (Sh!Va) is a cybersecurity specialist and security researcher focused on ethical penetration testing, vulnerability analysis, and system security research. He works on developing advanced security tools for testing, analysis, and automation in cybersecurity environments.</p>
+
+        <div className="text-white font-bold">Experience</div>
+        <ul className="list-disc pl-5 text-slate-300">
+          <li>Advanced penetration testing (Web, Network, System security)</li>
+          <li>Ethical vulnerability research and security analysis</li>
+          <li>Development of professional cybersecurity tools</li>
+          <li>Advanced network and protocol analysis</li>
+          <li>Working in Linux and Windows professional environments</li>
+          <li>OSINT systems and intelligence-gathering tools development</li>
+        </ul>
+
+        <div className="text-white font-bold">Technical Skills</div>
+        <p className="text-slate-300">Python, C / C++, JavaScript / Node.js, PHP, SQL, Bash / Shell scripting, Go (Golang), Rust, PowerShell</p>
+      </div>
+    );
+  };
 
   return (
     <div className="fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/85 px-4 py-6 backdrop-blur-xl">
@@ -595,69 +679,14 @@ function ToolModal({ tool, t, onClose }) {
       >
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300 to-transparent" />
 
-        <div className="grid gap-6 p-6 md:grid-cols-[1fr_.8fr] md:p-8">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-300/20 bg-cyan-300/10 px-3 py-1 text-xs font-black uppercase tracking-[0.24em] text-cyan-100">
-              {t.featured}
-            </div>
-
-            <div className="mt-4 flex items-center gap-4">
-              <div className="flex h-16 w-16 items-center justify-center rounded-3xl border border-cyan-300/20 bg-cyan-300/10 text-cyan-200">
-                <Icon size={30} />
-              </div>
-              <div>
-                <h3 className="text-3xl font-black text-white">{tool.name}</h3>
-                <p className="text-slate-400">{tool.category} • {tool.version}</p>
-              </div>
-            </div>
-
-            <p className="mt-5 max-w-2xl text-sm leading-7 text-slate-300">
-              {tool.description}
-            </p>
-
-            <div className="mt-5 flex flex-wrap gap-2">
-              {tool.features.map((feature) => (
-                <span key={feature} className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-slate-300">
-                  {feature}
-                </span>
-              ))}
-            </div>
-
-            <div className="mt-6 grid gap-3 sm:grid-cols-3">
-              <ActivityPill label={t.statusLabel} value={tool.status} />
-              <ActivityPill label={t.lastUpdated} value={tool.updated} tone="emerald" />
-              <ActivityPill label={t.downloads} value={tool.fileName || "—"} tone="amber" />
-            </div>
+        <div className="p-6 md:p-8">
+          <div className="mb-4 flex items-center justify-between">
+            <div className="text-sm font-black text-cyan-200">{OWNER.brand} — CV</div>
+            <button onClick={onClose} className="rounded-2xl border border-white/10 bg-white/5 px-3 py-2 text-sm text-white">{t.modalClose}</button>
           </div>
 
-          <div className="space-y-4 rounded-[1.5rem] border border-white/10 bg-white/5 p-5">
-            <div className="rounded-2xl border border-white/10 bg-slate-950/60 p-4 font-mono text-xs text-slate-300">
-              <div className="text-cyan-200">shiva@release:~$ cat release.json</div>
-              <div className="mt-3 space-y-2 leading-6 text-slate-400">
-                <div>name: {tool.name}</div>
-                <div>file: {tool.fileName}</div>
-                <div>risk: {tool.risk}</div>
-                <div>updated: {tool.updated}</div>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <a
-                href={tool.downloadUrl}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-4 py-3 text-sm font-black text-slate-950 transition hover:bg-white"
-              >
-                <Download size={17} />
-                {t.modalDownload}
-              </a>
-              <button
-                type="button"
-                onClick={onClose}
-                className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-bold text-white transition hover:bg-white/10"
-              >
-                <X size={17} />
-                {t.modalClose}
-              </button>
-            </div>
+          <div className="grid gap-6 md:grid-cols-1">
+            {renderCV()}
           </div>
         </div>
       </motion.div>
@@ -1509,6 +1538,7 @@ export default function ShivaToolsHub() {
         <ToolModal
           tool={previewTool}
           t={t}
+          lang={lang}
           onClose={() => setPreviewTool(null)}
         />
       )}
