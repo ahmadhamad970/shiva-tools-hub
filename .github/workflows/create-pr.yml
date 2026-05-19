@@ -1,0 +1,26 @@
+name: Create PR from ddos-sim-demo to main
+
+on:
+  push:
+    branches: [ ddos-sim-demo ]
+
+jobs:
+  create-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create PR to main if missing
+        uses: actions/github-script@v6
+        with:
+          script: |
+            const head = process.env.GITHUB_REF.replace('refs/heads/','');
+            const base = 'main';
+            const { data: prs } = await github.rest.pulls.list({ owner: context.repo.owner, repo: context.repo.repo, head: `${context.repo.owner}:${head}`, base });
+            if (prs.length > 0) {
+              core.info('PR already exists');
+            } else {
+              await github.rest.pulls.create({ owner: context.repo.owner, repo: context.repo.repo, title: `chore: merge ${head} into ${base}`, head, base, body: 'Automated PR created by workflow.' });
+              core.info('PR created');
+            }

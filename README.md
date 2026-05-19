@@ -22,3 +22,15 @@ GitHub Actions / GHCR (automatic Docker build)
 3. The `GITHUB_TOKEN` provided by Actions is used to authenticate to GHCR; ensure you grant `packages:write` permissions if your org restricts default tokens.
 
 After the action runs, images will be available at `ghcr.io/<owner>/ddos-sim`.
+
+Setting GitHub secrets for Heroku deployment
+
+1. Go to the repository Settings → Secrets → Actions.
+2. Add the following secrets if you want automatic Heroku deploys on `main`:
+	- `HEROKU_API_KEY` — your Heroku API key
+	- `HEROKU_APP_NAME` — the Heroku app name to deploy to
+	- `HEROKU_EMAIL` — the email associated with your Heroku account
+
+Automatic PR creation
+
+- When you push to `ddos-sim-demo`, the workflow `create-pr.yml` will open a PR to `main` if one does not already exist.
