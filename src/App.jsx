@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
+import DDoSSimulator from './components/DDoSSimulator'
 import { motion } from "framer-motion";
 import {
   Activity,
@@ -1215,6 +1216,8 @@ export default function ShivaToolsHub() {
     return updated;
   });
 
+  const [showSimulator, setShowSimulator] = useState(false);
+
   const [tools, setTools] = useState(defaultTools);
   const [pageError, setPageError] = useState("");
   const [loadingTools, setLoadingTools] = useState(false);
@@ -1381,6 +1384,14 @@ export default function ShivaToolsHub() {
             <LanguageSwitcher lang={lang} setLang={setLang} />
             <button
               type="button"
+              onClick={() => setShowSimulator((s) => !s)}
+              className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-black text-white transition hover:bg-white/10"
+            >
+              <Terminal size={16} />
+              Simulator
+            </button>
+            <button
+              type="button"
               onClick={logout}
               className="inline-flex items-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm font-black text-white transition hover:bg-white/10"
             >
@@ -1390,6 +1401,12 @@ export default function ShivaToolsHub() {
           </div>
         </div>
       </header>
+
+        {showSimulator && (
+          <div className="relative z-10 mx-auto max-w-7xl px-6 py-8">
+            <DDoSSimulator />
+          </div>
+        )}
 
       <section className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 py-20 lg:grid-cols-[1.1fr_.9fr]">
         <div>
